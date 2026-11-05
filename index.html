@@ -106,14 +106,16 @@
     <h1>Brian Curran</h1>
     <p class="role">Data Analyst · Pipelines &amp; Integrations · Leander, TX</p>
     <p class="intro">
-      I build the plumbing that turns scattered operational data into reporting people actually use:
-      SQL and BigQuery pipelines, automated client reports, and dashboards in Tableau and Power BI.
-      I'm looking for analytics engineering, BI development, data integration, or implementation work,
+      Data analyst with 4+ years owning automated reporting pipelines in BigQuery and SQL, from raw
+      emailed reports to client-ready Slides, PDFs, and Tableau dashboards covering ~8,500 locations.
+      Strong in SQL, BigQuery, and Tableau, with 8+ years in technical estimating before that.
+      Open to analytics engineering, BI development, data integration, or implementation work,
       remote or in the Austin area.
     </p>
     <nav class="links">
       <a href="https://github.com/bcurran2">GitHub</a>
       <a href="https://www.linkedin.com/in/brian-curran-87124225/">LinkedIn</a>
+      <a href="https://public.tableau.com/app/profile/brian.curran">Tableau Public</a>
       <a href="mailto:brian.curran22@gmail.com">Email</a>
     </nav>
   </header>
@@ -123,10 +125,13 @@
     <div class="card">
       <h3>Building Electricity Baseline Screening</h3>
       <p>
-        An end-to-end pipeline on the public Building Data Genome 2 (BDG2) dataset that builds
-        electricity baselines for commercial buildings and flags the ones worth a closer look.
-        Data is ingested with Python, modeled with dbt, run on a schedule with GitHub Actions,
-        and published as dashboards in both Tableau Public and Power BI.
+        Built per-building electricity baselines (hour, weekday/weekend, temperature) from 25M hourly
+        readings across ~1,600 buildings in the public Building Data Genome 2 dataset. A data-quality
+        check separated 1,089 reliable baselines from 362 flagged for meter issues.
+      </p>
+      <p>
+        Since extended into an end-to-end pipeline: Python ingest, dbt models, and GitHub Actions,
+        with the dashboard published in Tableau Public and rebuilt in Power BI.
       </p>
       <ul class="chips" aria-label="Tools used">
         <li>Python</li><li>dbt</li><li>BigQuery SQL</li><li>GitHub Actions</li><li>Tableau</li><li>Power BI</li>
@@ -134,7 +139,6 @@
       <p style="margin-bottom:0">
         <a href="https://github.com/bcurran2/building-energy-baseline-screening">Repository</a>
         &nbsp;·&nbsp;
-        <!-- Paste your Tableau Public dashboard URL here -->
         <a href="https://public.tableau.com/app/profile/brian.curran/viz/BuildingElectricalBaselineScreening/BuildingElectricityBaselineScreening">Tableau dashboard</a>
       </p>
     </div>
@@ -150,52 +154,58 @@
       </div>
       <p class="org">FSG Smart Buildings</p>
       <ul>
-        <li>Sole data analyst; owned reporting and dashboard automation, including contracted reporting for two clients.</li>
-        <li>Built an ETL pipeline that loaded scheduled emailed reports from Google Drive into BigQuery.</li>
-        <li>Automated client reporting from BigQuery through Sheets and Slides to emailed PDFs, saving 6–12 hours per report cycle.</li>
-        <li>Automated HVAC alarm diagnosis and built pulls from utility APIs and internal systems.</li>
+        <li>Automated weekly, bi-weekly (multi-region), and monthly reports for two clients (~8,500 locations, ~15,000 RTUs) from BigQuery to Slides and PDF, eliminating an estimated 300–600 hours of manual reporting per year.</li>
+        <li>As the company's only data analyst, owned the ETL pipeline behind client reporting: ingested scheduled emailed building-system reports, cleaned and corrected them with Apps Script, and loaded them into BigQuery as the source of truth for offline-device, offline-site, bypass, setpoint, and schedule-compliance reporting. Ran weekly for 2+ years.</li>
+        <li>Built and published Tableau dashboards for clients, refreshed weekly.</li>
+        <li>Automated HVAC diagnosis from alarm data, replacing days of manual review across a multi-region portfolio.</li>
+        <li>Built MCP-based tools (Python, JavaScript) that pulled utility and internal-system data into BigQuery and reports, developed with AI-assisted tooling.</li>
       </ul>
     </div>
 
     <div class="job">
       <div class="job-head">
-        <h3>Estimator</h3>
+        <h3>Structured Cabling Estimator</h3>
         <span class="dates">Feb 2014 – Sep 2022</span>
       </div>
-      <p class="org">BryComm (structured cabling)</p>
+      <p class="org">BryComm</p>
       <ul>
-        <li>Estimated structured cabling projects and built VBA tools into the company's Excel estimating templates.</li>
+        <li>Translated customer bid documents into scopes, takeoffs, and cost estimates per TIA and BICSI standards.</li>
+        <li>Built VBA macros and Excel tools for the estimating process and trained peers to use them.</li>
+        <li>Worked with vendors on pricing and lead times; ensured estimates met quality and safety standards.</li>
       </ul>
     </div>
 
     <div class="job">
       <div class="job-head">
-        <h3>Project, Production &amp; Data Entry Coordinator</h3>
-        <span class="dates">2007 – 2013</span>
+        <h3>Project Coordinator</h3>
+        <span class="dates">Feb 2007 – Nov 2013</span>
       </div>
       <p class="org">Iron Mountain</p>
+      <ul>
+        <li>Scoped off-site projects, coordinated record transport from customer sites to storage, and maintained workflow documents and labor tracking.</li>
+      </ul>
     </div>
   </section>
 
   <section id="skills">
     <h2>Skills</h2>
     <dl class="skills">
-      <dt>Data &amp; SQL</dt><dd>SQL, Google BigQuery, dbt, Excel</dd>
-      <dt>BI &amp; visualization</dt><dd>Tableau, Power BI, automated Google Sheets/Slides reporting</dd>
-      <dt>Automation</dt><dd>Google Apps Script, Python, GitHub Actions, REST APIs, Excel VBA</dd>
-      <dt>AI tools</dt><dd>Claude, ChatGPT, MCP integrations</dd>
+      <dt>Data &amp; SQL</dt><dd>BigQuery, SQL, PostgreSQL, ETL / data pipelines</dd>
+      <dt>BI &amp; reporting</dt><dd>Tableau, Power BI, Google Sheets and Slides, Excel (VBA)</dd>
+      <dt>Automation &amp; integration</dt><dd>Apps Script, Python, JavaScript, API / MCP integrations (AI-assisted)</dd>
     </dl>
-    <p class="note">
-      Much of my Python and Apps Script work has been built with AI assistance; I'm now
-      building my own fluency in Python and dbt.
-    </p>
   </section>
 
   <section id="certifications">
-    <h2>Certifications</h2>
+    <h2>Certifications &amp; education</h2>
     <ul class="plain">
       <li>Google Data Analytics Professional Certificate</li>
+      <li>Microsoft Excel Expert (Microsoft 365 Apps &amp; Office 2019)</li>
+      <li>Tableau Creator, Tableau</li>
+      <li>Data Analytics Certificate Course, Break Into Tech</li>
+      <li>SQL: Querying and Managing Data, Khan Academy</li>
       <li>Anthropic Academy: Claude 101</li>
+      <li>University of Phoenix: AAITN, Network Administration, 2013</li>
     </ul>
   </section>
 
