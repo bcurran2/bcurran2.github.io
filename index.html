@@ -121,17 +121,14 @@
   </header>
 
   <section id="projects">
-    <h2>Featured project</h2>
+    <h2>Projects</h2>
     <div class="card">
       <h3>Building Electricity Baseline Screening</h3>
       <p>
-        Built per-building electricity baselines (hour, weekday/weekend, temperature) from 25M hourly
-        readings across ~1,600 buildings in the public Building Data Genome 2 dataset. A data-quality
-        check separated 1,089 reliable baselines from 362 flagged for meter issues.
-      </p>
-      <p>
-        Since extended into an end-to-end pipeline: Python ingest, dbt models, and GitHub Actions,
-        with the dashboard published in Tableau Public and rebuilt in Power BI.
+        Built hourly electricity baselines from 25M readings across ~1,600 buildings in the public
+        Building Data Genome 2 dataset. A data-quality check flagged 362 buildings for meter issues
+        and kept 1,089 reliable baselines. Run end to end with Python ingest, dbt models, and GitHub
+        Actions, with the dashboard published in Tableau Public and rebuilt in Power BI.
       </p>
       <ul class="chips" aria-label="Tools used">
         <li>Python</li><li>dbt</li><li>BigQuery SQL</li><li>GitHub Actions</li><li>Tableau</li><li>Power BI</li>
@@ -140,6 +137,21 @@
         <a href="https://github.com/bcurran2/building-energy-baseline-screening">Repository</a>
         &nbsp;·&nbsp;
         <a href="https://public.tableau.com/app/profile/brian.curran/viz/BuildingElectricalBaselineScreening/BuildingElectricityBaselineScreening">Tableau dashboard</a>
+      </p>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>EIA Electricity Price Pipeline</h3>
+      <p>
+        Loads U.S. retail electricity price data from the EIA API into BigQuery with Python on a
+        scheduled run. dbt models the data with a staging layer, a year-over-year price mart built
+        with window functions, and tests. A Power BI dashboard sits on top of the mart.
+      </p>
+      <ul class="chips" aria-label="Tools used">
+        <li>Python</li><li>BigQuery</li><li>dbt</li><li>GitHub Actions</li><li>Power BI</li>
+      </ul>
+      <p style="margin-bottom:0">
+        <a href="https://github.com/bcurran2/eia-energy-pipeline">Repository</a>
       </p>
     </div>
   </section>
@@ -172,17 +184,6 @@
         <li>Translated customer bid documents into scopes, takeoffs, and cost estimates per TIA and BICSI standards.</li>
         <li>Built VBA macros and Excel tools for the estimating process and trained peers to use them.</li>
         <li>Worked with vendors on pricing and lead times; ensured estimates met quality and safety standards.</li>
-      </ul>
-    </div>
-
-    <div class="job">
-      <div class="job-head">
-        <h3>Project Coordinator</h3>
-        <span class="dates">Feb 2007 – Nov 2013</span>
-      </div>
-      <p class="org">Iron Mountain</p>
-      <ul>
-        <li>Scoped off-site projects, coordinated record transport from customer sites to storage, and maintained workflow documents and labor tracking.</li>
       </ul>
     </div>
   </section>
