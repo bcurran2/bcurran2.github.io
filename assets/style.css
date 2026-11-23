@@ -1,24 +1,12 @@
   :root {
-    --paper: #f2f5f8;
-    --panel: #ffffff;
+    --paper: #ffffff;
+    --panel: #f6f9fc;
     --ink: #11233b;
     --muted: #55657a;
     --rule: #d5dde6;
     --accent: #1b5fc4;
     --spark: #e59a0f;
-    --chip: #e4ecf5;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --paper: #0f1a28;
-      --panel: #16263a;
-      --ink: #e8eef5;
-      --muted: #9fb0c3;
-      --rule: #2a3d55;
-      --accent: #7db3f5;
-      --spark: #f2b441;
-      --chip: #1f3550;
-    }
+    --chip: #e8eff7;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -96,10 +84,6 @@
   }
 
   .avatar { display: block; width: 112px; height: 112px; border-radius: 50%; object-fit: cover; margin: 0 0 20px; border: 3px solid var(--panel); box-shadow: 0 0 0 2px var(--rule); background: var(--chip); }
-  .nav { display: flex; gap: 18px; margin: 0 0 22px; font-weight: 600; }
-  .nav a { color: var(--ink); text-decoration: none; padding-bottom: 2px; border-bottom: 2px solid transparent; }
-  .nav a:hover { border-bottom-color: var(--rule); }
-  .nav a[aria-current="page"] { border-bottom-color: var(--spark); }
 
   .intro-j { color: var(--muted); max-width: 60ch; margin: 0 0 40px; }
   .entry { padding: 26px 0; border-top: 1px solid var(--rule); }
@@ -108,3 +92,23 @@
   .entry h2 { font-size: 1.3rem; margin: 2px 0 10px; }
   .entry p { margin: 0 0 12px; max-width: 62ch; }
   .entry .plinks { margin-top: 4px; }
+
+  .topnav { display: flex; gap: 26px; margin: 0 0 40px; padding: 0 0 12px; border-bottom: 1px solid var(--rule); font-weight: 600; font-size: 1.02rem; }
+  .topnav a { color: var(--ink); text-decoration: none; padding-bottom: 12px; margin-bottom: -13px; border-bottom: 3px solid transparent; }
+  .topnav a:hover { border-bottom-color: var(--rule); }
+  .topnav a[aria-current="page"] { border-bottom-color: var(--spark); }
+  main { padding-top: 56px; }
+
+  .viz { margin: 34px 0 0; width: 100%; max-width: 260px; height: auto; display: block; }
+  .viz .grid { stroke: var(--rule); stroke-width: 1; }
+  .viz .base { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 4 5; opacity: .7; }
+  .viz .area { fill: url(#vizfill); }
+  .viz .line { fill: none; stroke: var(--accent); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .viz .dot { fill: var(--spark); }
+  @media (prefers-reduced-motion: no-preference) {
+    .viz .line { stroke-dasharray: 700; stroke-dashoffset: 700; animation: draw 2.2s ease-out .3s forwards; }
+    .viz .area, .viz .dot { opacity: 0; animation: show .8s ease-out 1.8s forwards; }
+  }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes show { to { opacity: 1; } }
+  @media (max-width: 900px) { .viz { display: none; } main { padding-top: 24px; } }
