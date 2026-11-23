@@ -117,6 +117,11 @@
         "src": "assets/projects/dc-spending.webp",
         "alt": "Chart of cumulative spending by year",
         "caption": "Cumulative spending"
+      },
+      {
+        "src": "assets/projects/dc-validation.webp",
+        "alt": "Bar chart of six checks against published numbers, all within their allowed tolerance",
+        "caption": "Checks against published numbers"
       }
     ]
   }
