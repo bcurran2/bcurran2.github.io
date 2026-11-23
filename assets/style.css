@@ -199,3 +199,4 @@
   .facts dt { color: var(--muted); } .facts dd { margin: 0; font-weight: 600; }
   .notes { color: var(--muted); font-size: .85rem; line-height: 1.5; margin: 18px 0 40px; }
   @media (max-width: 560px) { .facts { grid-template-columns: 1fr; gap: 0; } .facts dd { margin-bottom: 8px; } .mrow { grid-template-columns: 70px 1fr auto; } }
+  .conv { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px 18px; margin: 10px 0 8px; }

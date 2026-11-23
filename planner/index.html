@@ -107,6 +107,17 @@
         <dl class="facts" id="facts"></dl>
       </div>
 
+      <div class="panel" id="convert">
+        <h3>Convert power to yearly energy</h3>
+        <p class="hint">Power (MW) is how much the grid has to deliver at once. Energy (GWh) is how much it delivers over time. 1 MW running all year is 8.76 GWh.</p>
+        <div class="conv">
+          <div class="field"><label for="c-mw">Power (MW)</label><input id="c-mw" type="number" min="0" step="any" inputmode="decimal"></div>
+          <div class="field"><label for="c-util">Share of the year at that power</label><input id="c-util" type="number" min="1" max="100" step="1" value="100"><span class="hint">Percent</span></div>
+          <div class="field"><label for="c-gwh">Energy per year (GWh)</label><input id="c-gwh" type="number" min="0" step="any" inputmode="decimal"></div>
+        </div>
+        <p class="hint"><button type="button" id="c-use" class="linkbtn">Use this cluster's facility power</button></p>
+      </div>
+
       <p class="notes">Hardware cost counts the GPU systems only. Networking and storage add power, which the calculator includes, but they have no published price here, so treat the total as a floor. Facility cost uses the midpoint of a published per-megawatt range. Energy and electricity assume full load all year, which is an upper bound. GB200 NVL72 pricing is an analyst estimate, not a list price. Electricity rates are EIA average industrial prices for November 2025 (Electric Power Monthly, Table 5.6.A). This is a planning calculator, not a forecast.</p>
     </section>
   </main>

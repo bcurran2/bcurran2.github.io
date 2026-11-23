@@ -189,6 +189,17 @@
     syncing = false; render();
   }
 
+  // ---- MW <-> GWh converter (1 MW for 8,760 hours = 8.76 GWh) ----
+  var lastFacMw = null;
+  function convFromMw() {
+    var m = num('c-mw'), u = num('c-util');
+    $('c-gwh').value = (m >= 0 && u > 0) ? +(m * 8.76 * u / 100).toPrecision(6) : '';
+  }
+  function convFromGwh() {
+    var g = num('c-gwh'), u = num('c-util');
+    $('c-mw').value = (g >= 0 && u > 0) ? +(g / (8.76 * u / 100)).toPrecision(6) : '';
+  }
+
   function init() {
     if (!$('calc')) return;
     Object.keys(HARDWARE).forEach(function (n) { var o = el('option', null, n); o.value = n; $('hw').appendChild(o); });
@@ -203,6 +214,13 @@
     $('rate').addEventListener('input', function () { $('state').value = 'Custom'; render(); });
     ['avail', 'days', 'mfu', 'goodput', 'pue'].forEach(function (id) { $(id).addEventListener('input', render); });
     $('reset').addEventListener('click', defaults);
+    $('c-mw').addEventListener('input', convFromMw);
+    $('c-util').addEventListener('input', convFromMw);
+    $('c-gwh').addEventListener('input', convFromGwh);
+    $('c-use').addEventListener('click', function () {
+      var i = read(); if (!valid(i)) return;
+      $('c-mw').value = +compute(i).facMw.toPrecision(6); convFromMw();
+    });
     defaults();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
