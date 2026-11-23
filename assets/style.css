@@ -149,3 +149,16 @@
   .shots a:hover img { box-shadow: 0 3px 14px rgba(17, 35, 59, .18); }
   .project .flow { margin: 12px 0 14px; max-width: 660px; }
   .intro-link { margin: -28px 0 40px; max-width: 60ch; color: var(--muted); }
+
+  .gallery { margin: 12px 0 14px; max-width: 660px; }
+  .gallery .stage { position: relative; aspect-ratio: 16 / 10; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--chip); }
+  .gallery .slide { position: absolute; inset: 0; opacity: 0; transition: opacity .6s ease; display: block; }
+  .gallery .slide.on { opacity: 1; z-index: 1; }
+  .gallery .slide img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .gallery .cap { margin: 6px 0 0; color: var(--muted); font-size: .85rem; }
+  .gallery .dots { display: flex; gap: 4px; margin-top: 2px; }
+  .gallery .dots button { width: 24px; height: 24px; padding: 0; border: 0; background: none; cursor: pointer; position: relative; }
+  .gallery .dots button::after { content: ""; position: absolute; left: 7px; top: 7px; width: 10px; height: 10px; border-radius: 50%; background: var(--rule); }
+  .gallery .dots button.on::after { background: var(--accent, #d98a1f); }
+  .gallery .dots button:focus-visible { outline: 2px solid #2557a7; outline-offset: 1px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { .gallery .slide { transition: none; } }

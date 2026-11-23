@@ -12,6 +12,59 @@
     'pytest': 'pytest', 'etl': 'ETL', 'api': 'API', 'postgresql': 'PostgreSQL', 'javascript': 'JavaScript'
   };
 
+  // One image: a single figure. Two or more: a slideshow that rotates, with
+  // dots to pick a slide. It pauses on hover/focus and when motion is reduced.
+  function gallery(images) {
+    var wrap = el('div', 'gallery');
+    var stage = el('div', 'stage');
+    var slides = images.map(function (im, i) {
+      var a = el('a', 'slide' + (i === 0 ? ' on' : ''));
+      a.href = im.src; a.target = '_blank'; a.rel = 'noopener';
+      var img = el('img');
+      img.src = im.src; img.alt = im.alt || ''; if (i) img.loading = 'lazy';
+      a.appendChild(img);
+      stage.appendChild(a);
+      return a;
+    });
+    wrap.appendChild(stage);
+    var cap = el('p', 'cap', images[0].caption || '');
+    cap.setAttribute('aria-live', 'off');
+    wrap.appendChild(cap);
+    if (images.length < 2) return wrap;
+
+    var cur = 0, timer = null, dots = el('div', 'dots');
+    var buttons = images.map(function (im, i) {
+      var b = el('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', 'Show image ' + (i + 1) + ' of ' + images.length + ': ' + (im.caption || ''));
+      b.addEventListener('click', function () { show(i); start(); });
+      dots.appendChild(b);
+      return b;
+    });
+    function show(i) {
+      slides[cur].classList.remove('on'); buttons[cur].classList.remove('on');
+      cur = i;
+      slides[cur].classList.add('on'); buttons[cur].classList.add('on');
+      cap.textContent = images[cur].caption || '';
+    }
+    buttons[0].classList.add('on');
+    wrap.appendChild(dots);
+
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function start() {
+      stop();
+      if (still) return;
+      timer = setInterval(function () { if (!document.hidden) show((cur + 1) % slides.length); }, 5000);
+    }
+    wrap.addEventListener('mouseenter', stop);
+    wrap.addEventListener('mouseleave', start);
+    wrap.addEventListener('focusin', stop);
+    wrap.addEventListener('focusout', start);
+    start();
+    return wrap;
+  }
+
   function pretty(topic) {
     if (NAMES[topic]) return NAMES[topic];
     return topic.split('-').map(function (w) { return w.charAt(0).toUpperCase() + w.slice(1); }).join(' ');
@@ -45,19 +98,7 @@
     box.appendChild(el('h3', null, x.title || titleFrom(p.name)));
     var summary = x.summary || p.description;
     if (summary) box.appendChild(el('p', null, summary));
-    if (x.images && x.images.length) {
-      var shots = el('div', 'shots');
-      x.images.forEach(function (im) {
-        var a = el('a');
-        a.href = im.src; a.target = '_blank'; a.rel = 'noopener';
-        var img = el('img');
-        img.src = im.src; img.alt = im.alt || ''; img.loading = 'lazy';
-        a.appendChild(img);
-        if (im.caption) a.appendChild(el('span', null, im.caption));
-        shots.appendChild(a);
-      });
-      box.appendChild(shots);
-    }
+    if (x.images && x.images.length) box.appendChild(gallery(x.images));
     if (x.flow && x.flow.steps) {
       var flow = el('div', 'flow');
       flow.appendChild(el('p', 'flow-title', x.flow.title || ''));
