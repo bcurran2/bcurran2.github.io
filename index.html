@@ -37,11 +37,11 @@
     </nav>
 
     <p class="lead">
-      I have 4+ years owning automated reporting pipelines in BigQuery and SQL, from raw emailed
-      reports to client-ready Slides, PDFs, and Tableau dashboards covering ~8,500 locations,
-      and 8+ years in technical estimating before that. I'm looking for analytics engineering,
-      BI development, data integration, or implementation work.
+      I build data pipelines and the dashboards on top of them. My projects pull from public APIs and
+      datasets into BigQuery, model the data with dbt, and publish the results in Tableau and Power BI.
+      I'm looking for data integration, analytics engineering, BI development, or implementation work.
     </p>
+    <p class="intro-link">My experience, skills, and certifications are on the <a href="resume/">Resume</a> page.</p>
 
     <section id="projects">
       <h2>Projects</h2>
@@ -49,136 +49,56 @@
       <div id="project-list">
       <div class="project">
         <h3>Building Electricity Baseline Screening</h3>
-        <p>
-          Built hourly electricity baselines from 25M readings across ~1,600 buildings in the public
-          Building Data Genome 2 dataset. A data-quality check flagged 362 buildings for meter issues
-          and kept 1,089 reliable baselines. Run end to end with Python ingest, dbt models, and GitHub
-          Actions, with the dashboard published in Tableau Public and rebuilt in Power BI.
-        </p>
+        <p>Built hourly electricity baselines from 25M readings across ~1,600 buildings in the public Building Data Genome 2 dataset. A data-quality check flagged 362 buildings for meter issues and kept 1,089 reliable baselines. Run end to end with Python ingest, dbt models, and GitHub Actions, with the dashboard published in Tableau Public and rebuilt in Power BI.</p>
+        <div class="shots">
+          <a href="assets/projects/baseline-tableau.webp" target="_blank" rel="noopener"><img src="assets/projects/baseline-tableau.webp" alt="Tableau dashboard: funnel from 1,578 meter columns to 1,089 trustworthy baselines, a monthly use chart, and a scatter plot of 2017 use against the 2016 baseline" loading="lazy"><span>Tableau</span></a>
+          <a href="assets/projects/baseline-powerbi.webp" target="_blank" rel="noopener"><img src="assets/projects/baseline-powerbi.webp" alt="The same dashboard rebuilt in Power BI" loading="lazy"><span>Power BI</span></a>
+        </div>
         <ul class="tools" aria-label="Tools used">
           <li>Python</li><li>dbt</li><li>BigQuery SQL</li><li>GitHub Actions</li><li>Tableau</li><li>Power BI</li>
         </ul>
-        <p class="plinks">
-          <a href="https://github.com/bcurran2/building-energy-baseline-screening">Repository</a>
-          <a href="https://public.tableau.com/app/profile/brian.curran/viz/BuildingElectricalBaselineScreening/BuildingElectricityBaselineScreening">Tableau dashboard</a>
-        </p>
+        <p class="plinks"><a href="https://github.com/bcurran2/building-energy-baseline-screening">Repository</a><a href="https://public.tableau.com/app/profile/brian.curran/viz/BuildingElectricalBaselineScreening/BuildingElectricityBaselineScreening">Tableau dashboard</a></p>
       </div>
 
       <div class="project">
         <h3>EIA Electricity Price Pipeline</h3>
-        <p>
-          Loads U.S. retail electricity price data from the EIA API into BigQuery with Python on a
-          scheduled run. dbt models the data with a staging layer, a year-over-year price mart built
-          with window functions, and tests. Dashboards in Tableau Public and Power BI sit on top of the mart.
-        </p>
+        <p>Loads U.S. retail electricity price data from the EIA API into BigQuery with Python on a scheduled run. dbt models the data with a staging layer, a year-over-year price mart built with window functions, and tests. Dashboards in Tableau Public and Power BI sit on top of the mart.</p>
+        <div class="shots">
+          <a href="assets/projects/eia-tableau.webp" target="_blank" rel="noopener"><img src="assets/projects/eia-tableau.webp" alt="Tableau dashboard comparing residential electricity prices in Colorado and Texas, with year-over-year change" loading="lazy"><span>Tableau</span></a>
+          <a href="assets/projects/eia-powerbi.webp" target="_blank" rel="noopener"><img src="assets/projects/eia-powerbi.webp" alt="The same dashboard built in Power BI" loading="lazy"><span>Power BI</span></a>
+        </div>
         <ul class="tools" aria-label="Tools used">
           <li>Python</li><li>BigQuery</li><li>dbt</li><li>GitHub Actions</li><li>Tableau</li><li>Power BI</li>
         </ul>
-        <p class="plinks">
-          <a href="https://github.com/bcurran2/eia-energy-pipeline">Repository</a>
-          <a href="https://public.tableau.com/app/profile/brian.curran/viz/ResidentialElectricityPricesColoradovs_Texas/EIADashboard">Tableau dashboard</a>
-        </p>
+        <p class="plinks"><a href="https://github.com/bcurran2/eia-energy-pipeline">Repository</a><a href="https://public.tableau.com/app/profile/brian.curran/viz/ResidentialElectricityPricesColoradovs_Texas/EIADashboard">Tableau dashboard</a></p>
       </div>
 
       <div class="project">
         <h3>GitHub Issues Sync</h3>
-        <p>
-          Syncs issues from a public GitHub repository into BigQuery incrementally, so each run
-          fetches only issues changed since the last load. Keeps an append-only history and a
-          deduplicated current table, then models monthly opened, closed, and open-backlog counts
-          with dbt. Pytest and dbt tests run before a daily GitHub Actions job.
-        </p>
+        <p>Syncs issues from a public GitHub repository into BigQuery incrementally, so each run fetches only issues changed since the last load. Keeps an append-only history and a deduplicated current table, then models monthly opened, closed, and open-backlog counts with dbt. Pytest and dbt tests run before a daily GitHub Actions job.</p>
+        <div class="flow">
+          <p class="flow-title">How a daily run works</p>
+          <ol><li>GitHub API: only issues changed since the last load</li><li>Raw table: append-only history</li><li>Clean table: latest version of each issue</li><li class="end">dbt mart: monthly opened, closed, and open backlog</li></ol>
+        </div>
         <ul class="tools" aria-label="Tools used">
           <li>Python</li><li>BigQuery</li><li>dbt</li><li>GitHub Actions</li><li>pytest</li>
         </ul>
-        <p class="plinks">
-          <a href="https://github.com/bcurran2/github-issues-sync">Repository</a>
-        </p>
+        <p class="plinks"><a href="https://github.com/bcurran2/github-issues-sync">Repository</a></p>
       </div>
 
       <div class="project">
         <h3>AI Data Center Scaling Planner</h3>
-        <p>
-          A Jupyter notebook that converts a planned AI training run into the accelerators, power,
-          energy, and cost a data center planner has to line up. It then lays them out year by year
-          against available power, showing when to file for grid interconnection and when to start
-          construction. Built on published scaling-law research, with cited defaults and checks
-          against the published numbers.
-        </p>
+        <p>A Jupyter notebook that converts a planned AI training run into the accelerators, power, energy, and cost a data center planner has to line up. It then lays them out year by year against available power, showing when to file for grid interconnection and when to start construction. Built on published scaling-law research, with cited defaults and checks against the published numbers.</p>
+        <div class="shots">
+          <a href="assets/projects/dc-power.webp" target="_blank" rel="noopener"><img src="assets/projects/dc-power.webp" alt="Chart of power needed versus power available by year, on a log scale" loading="lazy"><span>Power needed vs. available</span></a>
+          <a href="assets/projects/dc-spending.webp" target="_blank" rel="noopener"><img src="assets/projects/dc-spending.webp" alt="Chart of cumulative spending by year" loading="lazy"><span>Cumulative spending</span></a>
+        </div>
         <ul class="tools" aria-label="Tools used">
           <li>Python</li><li>pandas</li><li>NumPy</li><li>Matplotlib</li><li>Jupyter</li>
         </ul>
-        <p class="plinks">
-          <a href="https://github.com/bcurran2/data-center-scaling-planner">Repository</a>
-          <a href="https://colab.research.google.com/github/bcurran2/data-center-scaling-planner/blob/main/dc_scaling_planner.ipynb">Open in Colab</a>
-        </p>
+        <p class="plinks"><a href="https://github.com/bcurran2/data-center-scaling-planner">Repository</a><a href="https://colab.research.google.com/github/bcurran2/data-center-scaling-planner/blob/main/dc_scaling_planner.ipynb">Open in Colab</a></p>
       </div>
       </div>
-    </section>
-
-    <section id="experience">
-      <h2>Experience</h2>
-
-      <div class="job">
-        <div class="job-head">
-          <h3>Energy Data Analyst</h3>
-          <span class="dates">Sep 2022 – Oct 2026</span>
-        </div>
-        <p class="org">FSG Smart Buildings</p>
-        <div class="flow">
-      <p class="flow-title">The reporting pipeline</p>
-      <ol>
-        <li>Scheduled emailed reports</li>
-        <li>Apps Script cleaning and corrections</li>
-        <li>BigQuery, the source of truth</li>
-        <li class="end">Slides, PDFs, and Tableau dashboards</li>
-      </ol>
-      <p class="flow-note">Ran weekly for 2+ years for two clients.</p>
-    </div>
-
-        <ul>
-          <li>Automated weekly, bi-weekly (multi-region), and monthly reports for two clients (~8,500 locations, ~15,000 RTUs) from BigQuery to Slides and PDF, eliminating an estimated 300–600 hours of manual reporting per year.</li>
-          <li>As the company's only data analyst, owned the ETL pipeline behind client reporting: ingested scheduled emailed building-system reports, cleaned and corrected them with Apps Script, and loaded them into BigQuery as the source of truth for offline-device, offline-site, bypass, setpoint, and schedule-compliance reporting. Ran weekly for 2+ years.</li>
-          <li>Built and published Tableau dashboards for clients, refreshed weekly.</li>
-          <li>Automated HVAC diagnosis from alarm data, replacing days of manual review across a multi-region portfolio.</li>
-          <li>Built MCP-based tools (Python, JavaScript) that pulled utility and internal-system data into BigQuery and reports, developed with AI-assisted tooling.</li>
-        </ul>
-      </div>
-
-      <div class="job">
-        <div class="job-head">
-          <h3>Structured Cabling Estimator</h3>
-          <span class="dates">Feb 2014 – Sep 2022</span>
-        </div>
-        <p class="org">BryComm</p>
-        <ul>
-          <li>Translated customer bid documents into scopes, takeoffs, and cost estimates per TIA and BICSI standards.</li>
-          <li>Built VBA macros and Excel tools for the estimating process and trained peers to use them.</li>
-          <li>Worked with vendors on pricing and lead times; ensured estimates met quality and safety standards.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="skills">
-      <h2>Skills</h2>
-      <dl>
-        <dt>Data and SQL</dt><dd>BigQuery, SQL, PostgreSQL, ETL / data pipelines</dd>
-        <dt>BI and reporting</dt><dd>Tableau, Power BI, Google Sheets and Slides, Excel (VBA)</dd>
-        <dt>Automation and integration</dt><dd>Apps Script, Python, JavaScript, API / MCP integrations (AI-assisted)</dd>
-      </dl>
-    </section>
-
-    <section id="certifications">
-      <h2>Certifications and education</h2>
-      <ul class="plain">
-        <li>Google Data Analytics Professional Certificate</li>
-        <li>Microsoft Excel Expert (Microsoft 365 Apps &amp; Office 2019)</li>
-        <li>Tableau Creator, Tableau</li>
-        <li>Data Analytics Certificate Course, Break Into Tech</li>
-        <li>SQL: Querying and Managing Data, Khan Academy</li>
-        <li>Anthropic Academy: Claude 101</li>
-        <li>University of Phoenix: AAITN, Network Administration, 2013</li>
-      </ul>
     </section>
   </main>
 

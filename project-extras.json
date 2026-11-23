@@ -19,6 +19,18 @@
         "label": "Tableau dashboard",
         "url": "https://public.tableau.com/app/profile/brian.curran/viz/BuildingElectricalBaselineScreening/BuildingElectricityBaselineScreening"
       }
+    ],
+    "images": [
+      {
+        "src": "assets/projects/baseline-tableau.webp",
+        "alt": "Tableau dashboard: funnel from 1,578 meter columns to 1,089 trustworthy baselines, a monthly use chart, and a scatter plot of 2017 use against the 2016 baseline",
+        "caption": "Tableau"
+      },
+      {
+        "src": "assets/projects/baseline-powerbi.webp",
+        "alt": "The same dashboard rebuilt in Power BI",
+        "caption": "Power BI"
+      }
     ]
   },
   "eia-energy-pipeline": {
@@ -41,6 +53,18 @@
         "label": "Tableau dashboard",
         "url": "https://public.tableau.com/app/profile/brian.curran/viz/ResidentialElectricityPricesColoradovs_Texas/EIADashboard"
       }
+    ],
+    "images": [
+      {
+        "src": "assets/projects/eia-tableau.webp",
+        "alt": "Tableau dashboard comparing residential electricity prices in Colorado and Texas, with year-over-year change",
+        "caption": "Tableau"
+      },
+      {
+        "src": "assets/projects/eia-powerbi.webp",
+        "alt": "The same dashboard built in Power BI",
+        "caption": "Power BI"
+      }
     ]
   },
   "github-issues-sync": {
@@ -52,7 +76,16 @@
       "dbt",
       "GitHub Actions",
       "pytest"
-    ]
+    ],
+    "flow": {
+      "title": "How a daily run works",
+      "steps": [
+        "GitHub API: only issues changed since the last load",
+        "Raw table: append-only history",
+        "Clean table: latest version of each issue",
+        "dbt mart: monthly opened, closed, and open backlog"
+      ]
+    }
   },
   "data-center-scaling-planner": {
     "title": "AI Data Center Scaling Planner",
@@ -72,6 +105,18 @@
       {
         "label": "Open in Colab",
         "url": "https://colab.research.google.com/github/bcurran2/data-center-scaling-planner/blob/main/dc_scaling_planner.ipynb"
+      }
+    ],
+    "images": [
+      {
+        "src": "assets/projects/dc-power.webp",
+        "alt": "Chart of power needed versus power available by year, on a log scale",
+        "caption": "Power needed vs. available"
+      },
+      {
+        "src": "assets/projects/dc-spending.webp",
+        "alt": "Chart of cumulative spending by year",
+        "caption": "Cumulative spending"
       }
     ]
   }

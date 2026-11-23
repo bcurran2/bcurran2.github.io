@@ -45,6 +45,29 @@
     box.appendChild(el('h3', null, x.title || titleFrom(p.name)));
     var summary = x.summary || p.description;
     if (summary) box.appendChild(el('p', null, summary));
+    if (x.images && x.images.length) {
+      var shots = el('div', 'shots');
+      x.images.forEach(function (im) {
+        var a = el('a');
+        a.href = im.src; a.target = '_blank'; a.rel = 'noopener';
+        var img = el('img');
+        img.src = im.src; img.alt = im.alt || ''; img.loading = 'lazy';
+        a.appendChild(img);
+        if (im.caption) a.appendChild(el('span', null, im.caption));
+        shots.appendChild(a);
+      });
+      box.appendChild(shots);
+    }
+    if (x.flow && x.flow.steps) {
+      var flow = el('div', 'flow');
+      flow.appendChild(el('p', 'flow-title', x.flow.title || ''));
+      var ol = el('ol');
+      x.flow.steps.forEach(function (s, i) {
+        ol.appendChild(el('li', i === x.flow.steps.length - 1 ? 'end' : null, s));
+      });
+      flow.appendChild(ol);
+      box.appendChild(flow);
+    }
     var tools = x.tools || (p.topics || []).map(pretty);
     if (tools.length) {
       var ul = el('ul', 'tools');
