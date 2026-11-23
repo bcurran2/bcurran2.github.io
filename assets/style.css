@@ -193,8 +193,8 @@
   .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 8px; vertical-align: -1px; }
   .mrow { display: grid; grid-template-columns: 84px 1fr auto; align-items: center; gap: 10px; margin-bottom: 8px; font-size: .92rem; }
   .mrow em { font-style: normal; color: var(--muted); min-width: 70px; text-align: right; }
-  .bar { display: block; height: 18px; border-radius: 4px; }
-  .bar.need { background: #e59a0f; } .bar.have { background: #1b5fc4; }
+  .mrow .bar { display: block; height: 18px; border-radius: 4px; }
+  .mrow .bar.need { background: #e59a0f; } .mrow .bar.have { background: #1b5fc4; }
   .facts { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; margin: 10px 0 0; }
   .facts dt { color: var(--muted); } .facts dd { margin: 0; font-weight: 600; }
   .notes { color: var(--muted); font-size: .85rem; line-height: 1.5; margin: 18px 0 40px; }
