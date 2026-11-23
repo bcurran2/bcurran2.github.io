@@ -118,31 +118,7 @@
         <p class="hint"><button type="button" id="c-use" class="linkbtn">Use this cluster's facility power</button></p>
       </div>
 
-      <p class="notes">Hardware cost counts the GPU systems only. Networking and storage add power, which the calculator includes, but they have no published price here, so treat the total as a floor. Facility cost uses the midpoint of a published per-megawatt range. Energy and electricity assume full load all year, which is an upper bound. GB200 NVL72 pricing is an analyst estimate, not a list price. Electricity rates are EIA average industrial prices for November 2025 (Electric Power Monthly, Table 5.6.A). This is a planning calculator, not a forecast.</p>
-
-      <section class="sources" id="sources">
-        <h3>Sources</h3>
-        <p class="hint">Every number the calculator uses comes from one of these. The notebook has the complete list, with each value next to its source.</p>
-        <dl>
-          <dt>Training compute and model size</dt>
-          <dd><a href="https://arxiv.org/abs/2001.08361">Kaplan et al. (2020), Scaling Laws for Neural Language Models</a> (compute &asymp; 6 &times; parameters &times; tokens)<br>
-              <a href="https://arxiv.org/abs/2203.15556">Hoffmann et al. (2022), Training Compute-Optimal Large Language Models</a> (about 20 tokens per parameter)</dd>
-          <dt>Speed efficiency, training time, and the Llama comparison</dt>
-          <dd><a href="https://arxiv.org/abs/2407.21783">Meta, The Llama 3 Herd of Models</a> (3.8&times;10&sup2;&#8309; FLOP, 38&ndash;43% MFU, over 90% effective training time)</dd>
-          <dt>GPU speed, rack power, and price</dt>
-          <dd><a href="https://www.nvidia.com/en-us/data-center/gb200-nvl72/">NVIDIA GB200 NVL72</a> and <a href="https://docs.nvidia.com/dgx/dgxgb200-user-guide/hardware.html">DGX GB200 user guide</a> (about 120 kW per rack)<br>
-              <a href="https://docs.nvidia.com/dgx/dgxh100-user-guide/introduction-to-dgxh100.html">NVIDIA DGX H100 user guide</a> (10.2 kW per system)<br>
-              <a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/price-of-nvidias-vera-rubin-nvl72-racks-skyrockets-to-as-much-as-usd8-8-million-apiece-but-server-makers-margins-will-be-tight-nvidia-is-moving-closer-to-shipping-entire-full-scale-systems">Tom's Hardware</a> (analyst estimate of about $3M per GB200 NVL72 rack, not a list price)</dd>
-          <dt>Networking and storage power</dt>
-          <dd><a href="https://www.vertiv.com/493cf5/globalassets/campaigns/ai-hub/vertiv-reference-design-020-ds-en-na-2024-gr-00109-web.pdf">Vertiv 360AI Reference Design 020</a> (6,912 kW total IT load for a GB200 NVL72 build)</dd>
-          <dt>Facility overhead and build cost</dt>
-          <dd><a href="https://intelligence.uptimeinstitute.com/resource/uptime-institute-global-data-center-survey-2025">Uptime Institute Global Data Center Survey 2025</a> (average PUE of 1.54)<br>
-              <a href="https://www.credaily.com/?p=222025">Cushman &amp; Wakefield 2026 Data Center Development Cost Guide</a> ($8.9M to $23.3M per MW)</dd>
-          <dt>Electricity rates</dt>
-          <dd><a href="https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_a">U.S. EIA, Electric Power Monthly, Table 5.6.A</a> (average industrial price by state, November 2025)</dd>
-        </dl>
-        <p class="hint"><a href="https://github.com/bcurran2/data-center-scaling-planner/blob/main/dc_scaling_planner.ipynb">Full source list and formulas in the notebook</a></p>
-      </section>
+      <p class="notes">Hardware cost counts the GPU systems only. Networking and storage add power, which the calculator includes, but they have no published price here, so treat the total as a floor. Facility cost uses the midpoint of a published per-megawatt range. Energy and electricity assume full load all year, which is an upper bound. GB200 NVL72 pricing is an analyst estimate, not a list price. Electricity rates are EIA average industrial prices for November 2025 (Electric Power Monthly, Table 5.6.A). Sources for every figure are listed in the <a href="https://github.com/bcurran2/data-center-scaling-planner#sources">README</a>. This is a planning calculator, not a forecast.</p>
     </section>
   </main>
 
