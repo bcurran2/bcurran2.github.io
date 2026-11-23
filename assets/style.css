@@ -99,16 +99,6 @@
   .topnav a[aria-current="page"] { border-bottom-color: var(--spark); }
   main { padding-top: 56px; }
 
-  .viz { margin: 34px 0 0; width: 100%; max-width: 260px; height: auto; display: block; }
-  .viz .grid { stroke: var(--rule); stroke-width: 1; }
-  .viz .base { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 4 5; opacity: .7; }
-  .viz .area { fill: url(#vizfill); }
-  .viz .line { fill: none; stroke: var(--accent); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-  .viz .dot { fill: var(--spark); }
-  @media (prefers-reduced-motion: no-preference) {
-    .viz .line { stroke-dasharray: 700; stroke-dashoffset: 700; animation: draw 2.2s ease-out .3s forwards; }
-    .viz .area, .viz .dot { opacity: 0; animation: show .8s ease-out 1.8s forwards; }
-  }
-  @keyframes draw { to { stroke-dashoffset: 0; } }
-  @keyframes show { to { opacity: 1; } }
-  @media (max-width: 900px) { .viz { display: none; } main { padding-top: 24px; } }
+  @media (max-width: 900px) { main { padding-top: 24px; } }
+
+  #bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
