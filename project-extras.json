@@ -1,0 +1,78 @@
+{
+  "building-energy-baseline-screening": {
+    "title": "Building Electricity Baseline Screening",
+    "summary": "Built hourly electricity baselines from 25M readings across ~1,600 buildings in the public Building Data Genome 2 dataset. A data-quality check flagged 362 buildings for meter issues and kept 1,089 reliable baselines. Run end to end with Python ingest, dbt models, and GitHub Actions, with the dashboard published in Tableau Public and rebuilt in Power BI.",
+    "tools": [
+      "Python",
+      "dbt",
+      "BigQuery SQL",
+      "GitHub Actions",
+      "Tableau",
+      "Power BI"
+    ],
+    "links": [
+      {
+        "label": "Repository",
+        "url": "https://github.com/bcurran2/building-energy-baseline-screening"
+      },
+      {
+        "label": "Tableau dashboard",
+        "url": "https://public.tableau.com/app/profile/brian.curran/viz/BuildingElectricalBaselineScreening/BuildingElectricityBaselineScreening"
+      }
+    ]
+  },
+  "eia-energy-pipeline": {
+    "title": "EIA Electricity Price Pipeline",
+    "summary": "Loads U.S. retail electricity price data from the EIA API into BigQuery with Python on a scheduled run. dbt models the data with a staging layer, a year-over-year price mart built with window functions, and tests. Dashboards in Tableau Public and Power BI sit on top of the mart.",
+    "tools": [
+      "Python",
+      "BigQuery",
+      "dbt",
+      "GitHub Actions",
+      "Tableau",
+      "Power BI"
+    ],
+    "links": [
+      {
+        "label": "Repository",
+        "url": "https://github.com/bcurran2/eia-energy-pipeline"
+      },
+      {
+        "label": "Tableau dashboard",
+        "url": "https://public.tableau.com/app/profile/brian.curran/viz/ResidentialElectricityPricesColoradovs_Texas/EIADashboard"
+      }
+    ]
+  },
+  "github-issues-sync": {
+    "title": "GitHub Issues Sync",
+    "summary": "Syncs issues from a public GitHub repository into BigQuery incrementally, so each run fetches only issues changed since the last load. Keeps an append-only history and a deduplicated current table, then models monthly opened, closed, and open-backlog counts with dbt. Pytest and dbt tests run before a daily GitHub Actions job.",
+    "tools": [
+      "Python",
+      "BigQuery",
+      "dbt",
+      "GitHub Actions",
+      "pytest"
+    ]
+  },
+  "data-center-scaling-planner": {
+    "title": "AI Data Center Scaling Planner",
+    "summary": "A Jupyter notebook that converts a planned AI training run into the accelerators, power, energy, and cost a data center planner has to line up. It then lays them out year by year against available power, showing when to file for grid interconnection and when to start construction. Built on published scaling-law research, with cited defaults and checks against the published numbers.",
+    "tools": [
+      "Python",
+      "pandas",
+      "NumPy",
+      "Matplotlib",
+      "Jupyter"
+    ],
+    "links": [
+      {
+        "label": "Repository",
+        "url": "https://github.com/bcurran2/data-center-scaling-planner"
+      },
+      {
+        "label": "Open in Colab",
+        "url": "https://colab.research.google.com/github/bcurran2/data-center-scaling-planner/blob/main/dc_scaling_planner.ipynb"
+      }
+    ]
+  }
+}
