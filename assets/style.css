@@ -106,3 +106,6 @@
   aside > * { position: relative; z-index: 1; }
   aside > canvas#bg { position: absolute; z-index: 0; top: 0; bottom: 0; left: -24px; right: -36px; width: calc(100% + 60px); height: 100%; pointer-events: none; }
   @media (max-width: 900px) { aside { min-height: 0; } aside > canvas#bg { left: -24px; right: -24px; width: calc(100% + 48px); } }
+
+  .status { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 20px; padding: 5px 14px 5px 11px; border-radius: 999px; background: #e6f4ec; color: #17623a; font-weight: 600; font-size: .95rem; }
+  .status .dot { width: 9px; height: 9px; border-radius: 50%; background: #1f9d57; flex: none; }

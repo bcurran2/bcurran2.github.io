@@ -19,13 +19,14 @@
     <h1>Brian Curran</h1>
     <p class="role">Data analyst building pipelines and integrations</p>
     <hr class="bar">
+    <p class="status"><span class="dot" aria-hidden="true"></span>Open to work</p>
     <ul class="contact">
       <li><a href="mailto:brian.curran22@gmail.com">brian.curran22@gmail.com</a></li>
       <li><a href="https://www.linkedin.com/in/brian-curran-87124225/">LinkedIn</a></li>
       <li><a href="https://github.com/bcurran2">GitHub</a></li>
       <li><a href="https://public.tableau.com/app/profile/brian.curran">Tableau Public</a></li>
     </ul>
-    <p class="where">Leander, TX. Open to remote work or roles in the Austin area.</p>
+    <p class="where">Looking for data integration, analytics engineering, BI development, and implementation roles. Remote, or in the Austin area. Based in Leander, TX.</p>
   </aside>
 
   <main>
@@ -36,6 +37,30 @@
 
     <h2 style="font-size:1.9rem;margin-bottom:12px">Journal</h2>
     <p class="intro-j">Short write-ups of the data projects I'm building: the problem, the approach, and what the results showed.</p>
+
+    <article class="entry">
+      <time datetime="2026-11-23">November 23, 2026</time>
+      <h2>AI Data Center Scaling Planner: from training run to power and cost</h2>
+      <p>
+        This notebook takes a planned AI training run, measured in FLOP, and works out what a data center
+        planner has to line up: the number of accelerators, IT and facility megawatts, energy use, and
+        capital cost. It then lays those out year by year against the power available, which shows when to
+        file for grid interconnection and when to start construction.
+      </p>
+      <p>
+        The method follows the Kaplan and Chinchilla scaling-law papers. Hardware, facility, and price
+        defaults come from published sources and are cited in the notebook. A validation section re-derives
+        figures the papers report directly and fails loudly if a change breaks the math.
+      </p>
+      <p>
+        It is a planning calculator, not a forecast. The default run sizes extrapolate a historical trend,
+        and the notebook says so.
+      </p>
+      <p class="plinks">
+        <a href="https://github.com/bcurran2/data-center-scaling-planner">Repository</a>
+        <a href="https://colab.research.google.com/github/bcurran2/data-center-scaling-planner/blob/main/dc_scaling_planner.ipynb">Open in Colab</a>
+      </p>
+    </article>
 
     <article class="entry">
       <time datetime="2026-11-23">November 23, 2026</time>
