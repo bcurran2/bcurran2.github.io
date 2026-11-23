@@ -105,6 +105,10 @@
       {
         "label": "Open in Colab",
         "url": "https://colab.research.google.com/github/bcurran2/data-center-scaling-planner/blob/main/dc_scaling_planner.ipynb"
+      },
+      {
+        "label": "Open in Binder",
+        "url": "https://mybinder.org/v2/gh/bcurran2/data-center-scaling-planner/main?labpath=dc_scaling_planner.ipynb"
       }
     ],
     "images": [
