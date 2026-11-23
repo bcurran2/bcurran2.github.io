@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Journal · Brian Curran</title>
+<meta name="description" content="Notes from building data pipeline projects while looking for my next data role.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="layout">
+
+  <aside>
+    <img class="avatar" src="https://github.com/bcurran2.png?size=240" alt="Brian Curran" width="112" height="112">
+    <h1>Brian Curran</h1>
+    <p class="role">Data analyst building pipelines and integrations</p>
+    <hr class="bar">
+    <nav class="nav" aria-label="Pages">
+      <a href="../">Home</a>
+      <a href="./" aria-current="page">Journal</a>
+    </nav>
+    <ul class="contact">
+      <li><a href="mailto:brian.curran22@gmail.com">brian.curran22@gmail.com</a></li>
+      <li><a href="https://www.linkedin.com/in/brian-curran-87124225/">LinkedIn</a></li>
+      <li><a href="https://github.com/bcurran2">GitHub</a></li>
+      <li><a href="https://public.tableau.com/app/profile/brian.curran">Tableau Public</a></li>
+    </ul>
+    <p class="where">Leander, TX. Open to remote work or roles in the Austin area.</p>
+  </aside>
+
+  <main>
+    <h2 style="font-size:1.9rem;margin-bottom:12px">Journal</h2>
+    <p class="intro-j">Notes on the projects I'm building while I look for my next data role: what I made, what I learned, and what I'd do differently.</p>
+
+    <article class="entry">
+      <time datetime="2026-11-23">Nov 23, 2026</time>
+      <h2>GitHub Issues Sync: loading only what changed</h2>
+      <p>
+        My third project pulls issues from the dbt-core repository through the GitHub API into
+        BigQuery every day. The goal was an incremental load: each run asks BigQuery for the newest
+        update it already has and fetches only newer issues. Raw rows are appended, then a window
+        function keeps the latest version of each issue.
+      </p>
+      <p>
+        One detail I liked: GitHub's <code>since</code> filter is inclusive, so every run re-fetches a
+        few issues it already has. During testing, one issue was captured only because of that overlap.
+        A strict cursor would have skipped it for good, and the dedupe step handles the repeats.
+      </p>
+      <p class="plinks"><a href="https://github.com/bcurran2/github-issues-sync">Repository</a></p>
+    </article>
+
+    <article class="entry">
+      <time datetime="2026-11-17">Nov 17, 2026</time>
+      <h2>EIA Electricity Price Pipeline: my first full git workflow</h2>
+      <p>
+        This one starts from an API instead of a file. Python loads U.S. retail electricity prices from
+        the EIA into BigQuery, and dbt cleans them and builds a year-over-year price table using a
+        <code>LAG</code> window function. It runs on a schedule, with tests on the key columns.
+      </p>
+      <p>
+        I created the repo and made each commit myself in WSL, which meant learning the loop of edit,
+        check, commit, and push. I also built the Power BI version of the dashboard by hand from a
+        CSV export of the final table, next to the Tableau version.
+      </p>
+      <p class="plinks">
+        <a href="https://github.com/bcurran2/eia-energy-pipeline">Repository</a>
+        <a href="https://public.tableau.com/app/profile/brian.curran/viz/ResidentialElectricityPricesColoradovs_Texas/EIADashboard">Tableau dashboard</a>
+      </p>
+    </article>
+
+    <article class="entry">
+      <time datetime="2026-10-29">Oct 29, 2026</time>
+      <h2>Turning an analysis into a pipeline</h2>
+      <p>
+        My first portfolio project was a one-off SQL analysis. I rebuilt it as a repeatable pipeline:
+        Python ingest, dbt models in staging, intermediate, and mart layers, about 25 data tests, and
+        GitHub Actions. Claude wrote most of the code, and the README says so. My part was running it and
+        checking the results. It reproduced my original numbers exactly, down to the same 1,089
+        reliable baselines.
+      </p>
+      <p>
+        I then rebuilt the Tableau dashboard in Power BI Desktop, to compare how the two tools handle
+        the same data.
+      </p>
+      <p class="plinks"><a href="https://github.com/bcurran2/building-energy-baseline-screening">Repository</a></p>
+    </article>
+
+    <article class="entry">
+      <time datetime="2026-10-20">Oct 20, 2026</time>
+      <h2>Building Electricity Baseline Screening</h2>
+      <p>
+        I wanted a portfolio project that uses no work data. I used the public Building Data Genome 2
+        dataset: 25 million hourly readings across about 1,600 buildings. I built per-building baselines
+        in BigQuery SQL, then added a data-quality check. It flagged 362 buildings for meter problems and
+        kept 1,089 reliable ones.
+      </p>
+      <p>
+        The dashboard runs on exported CSVs, because BigQuery sandbox tables expire.
+      </p>
+      <p class="plinks">
+        <a href="https://public.tableau.com/app/profile/brian.curran/viz/BuildingElectricalBaselineScreening/BuildingElectricityBaselineScreening">Tableau dashboard</a>
+      </p>
+    </article>
+
+  </main>
+
+  <footer>© 2026 Brian Curran</footer>
+</div>
+</body>
+</html>
