@@ -99,6 +99,10 @@
     ],
     "links": [
       {
+        "label": "Try the calculator",
+        "url": "planner/"
+      },
+      {
         "label": "Repository",
         "url": "https://github.com/bcurran2/data-center-scaling-planner"
       },

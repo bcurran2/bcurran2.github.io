@@ -78,7 +78,7 @@
     }).join(' ');
   }
 
-  function safeUrl(u) { return typeof u === 'string' && /^https:\/\//.test(u) ? u : null; }
+  function safeUrl(u) { return typeof u === 'string' && (/^https:\/\//.test(u) || /^[a-z0-9_-]+\/$/i.test(u)) ? u : null; }  // https links, or a folder on this site like "planner/"
 
   function el(tag, cls, text) {
     var e = document.createElement(tag);

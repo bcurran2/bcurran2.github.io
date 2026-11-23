@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cluster Calculator · Brian Curran</title>
+<meta name="description" content="Enter a GPU count, state, and electricity rate to see the power, energy, cost, and largest training run for an AI cluster.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="layout">
+
+  <aside>
+    <canvas id="bg" aria-hidden="true"></canvas>
+    <img class="avatar" src="https://github.com/bcurran2.png?size=240" alt="Brian Curran" width="112" height="112">
+    <h1>Brian Curran</h1>
+    <p class="role">Data analyst building pipelines and integrations</p>
+    <hr class="bar">
+    <p class="status"><span class="dot" aria-hidden="true"></span>Open to work</p>
+    <ul class="contact">
+      <li><a href="mailto:brian.curran22@gmail.com">brian.curran22@gmail.com</a></li>
+      <li><a href="https://www.linkedin.com/in/brian-curran-87124225/">LinkedIn</a></li>
+      <li><a href="https://github.com/bcurran2">GitHub</a></li>
+      <li><a href="https://public.tableau.com/app/profile/brian.curran">Tableau Public</a></li>
+    </ul>
+    <p class="where">Looking for data integration, analytics engineering, BI development, and implementation roles. Remote, or in the Austin area. Based in Leander, TX.</p>
+  </aside>
+
+  <main>
+    <nav class="topnav" aria-label="Pages">
+      <a href="../">Home</a>
+      <a href="../journal/">Journal</a>
+      <a href="../resume/">Resume</a>
+    </nav>
+
+    <h2 class="calc-title">AI Data Center Cluster Calculator</h2>
+    <p class="calc-intro">Enter the size of a GPU cluster and where it will run. The calculator shows the power it needs, what it costs to build and run, and the largest model it could train. It uses the same published figures and formulas as my <a href="https://github.com/bcurran2/data-center-scaling-planner">scaling planner notebook</a>.</p>
+
+    <form id="calc" class="calc-form" autocomplete="off" novalidate>
+      <div class="field">
+        <label for="hw">Hardware</label>
+        <select id="hw"></select>
+      </div>
+      <div class="field">
+        <label for="gpus">Number of GPUs</label>
+        <input id="gpus" type="number" min="1" step="any" inputmode="decimal">
+      </div>
+      <div class="field">
+        <label for="budget">Or hardware budget ($ millions)</label>
+        <input id="budget" type="number" min="0" step="any" inputmode="decimal">
+        <span class="hint" id="budget-hint"></span>
+      </div>
+      <div class="field">
+        <label for="state">State</label>
+        <select id="state"></select>
+      </div>
+      <div class="field">
+        <label for="rate">Electricity rate ($ per kWh)</label>
+        <input id="rate" type="number" min="0" step="0.001" inputmode="decimal">
+        <span class="hint">Prefilled from EIA industrial rates. Edit it for your own contract.</span>
+      </div>
+      <div class="field">
+        <label for="avail">Power you can get, optional (MW)</label>
+        <input id="avail" type="number" min="0" step="any" inputmode="decimal" placeholder="e.g. 250">
+        <span class="hint">Facility power at the utility meter.</span>
+      </div>
+      <details class="adv">
+        <summary>Assumptions</summary>
+        <div class="adv-grid">
+          <div class="field"><label for="days">Training run length (days)</label><input id="days" type="number" min="1" step="any"></div>
+          <div class="field"><label for="mfu">Share of peak speed achieved (MFU)</label><input id="mfu" type="number" min="0.01" max="1" step="0.01"></div>
+          <div class="field"><label for="goodput">Share of time training (goodput)</label><input id="goodput" type="number" min="0.01" max="1" step="0.01"></div>
+          <div class="field"><label for="pue">Facility overhead (PUE)</label><input id="pue" type="number" min="1" step="0.01"></div>
+        </div>
+        <p class="hint"><button type="button" id="reset" class="linkbtn">Reset to defaults</button></p>
+      </details>
+    </form>
+
+    <section class="results" id="results" aria-live="polite">
+      <p class="summary" id="summary"></p>
+
+      <div class="tiles">
+        <div class="tile"><span class="k">Facility power</span><span class="v" id="o-power"></span><span class="s" id="o-power-s"></span></div>
+        <div class="tile"><span class="k">Energy per year</span><span class="v" id="o-energy"></span><span class="s">if run at full load all year</span></div>
+        <div class="tile"><span class="k">Electricity per year</span><span class="v" id="o-elec"></span><span class="s" id="o-elec-s"></span></div>
+        <div class="tile"><span class="k">Total investment</span><span class="v" id="o-total"></span><span class="s" id="o-total-s"></span></div>
+      </div>
+
+      <div class="panel">
+        <h3>Where the investment goes</h3>
+        <div class="split" id="split" role="img" aria-label="Share of investment in hardware and facility"></div>
+        <ul class="legend" id="split-legend"></ul>
+      </div>
+
+      <div class="panel" id="power-check" hidden>
+        <h3>Power check</h3>
+        <div class="meter" id="meter" role="img"></div>
+        <p id="power-msg"></p>
+      </div>
+
+      <div class="panel">
+        <h3>What it can train</h3>
+        <p id="train-msg"></p>
+        <dl class="facts" id="facts"></dl>
+      </div>
+
+      <p class="notes">Hardware cost counts the GPU systems only. Networking and storage add power, which the calculator includes, but they have no published price here, so treat the total as a floor. Facility cost uses the midpoint of a published per-megawatt range. Energy and electricity assume full load all year, which is an upper bound. GB200 NVL72 pricing is an analyst estimate, not a list price. Electricity rates are EIA average industrial prices for November 2025 (Electric Power Monthly, Table 5.6.A). This is a planning calculator, not a forecast.</p>
+    </section>
+  </main>
+
+  <footer>© 2026 Brian Curran</footer>
+</div>
+<script src="../assets/bg.js" defer></script>
+<script src="../assets/planner.js" defer></script>
+</body>
+</html>
