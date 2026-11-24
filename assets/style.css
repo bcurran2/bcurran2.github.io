@@ -208,3 +208,11 @@
   aside { view-transition-name: sidebar; }
   ::view-transition-group(*) { animation-duration: .18s; }
   @media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
+
+  /* Phones: clip the background canvas to the left pane so it can't widen the page, and give links and buttons thumb-sized targets. */
+  @media (max-width: 900px) { aside { position: relative; overflow: hidden; } }
+  @media (max-width: 640px) {
+    .plinks a, .linkbtn, .adv summary { display: inline-block; padding: 8px 0; }
+    .plinks { line-height: 1.2; }
+  }
+  @media (max-width: 640px) { .gallery .dots button { width: 34px; height: 34px; } .gallery .dots button::after { left: 12px; top: 12px; } }
