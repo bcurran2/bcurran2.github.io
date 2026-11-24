@@ -200,3 +200,11 @@
   .notes { color: var(--muted); font-size: .85rem; line-height: 1.5; margin: 18px 0 40px; }
   @media (max-width: 560px) { .facts { grid-template-columns: 1fr; gap: 0; } .facts dd { margin-bottom: 8px; } .mrow { grid-template-columns: 70px 1fr auto; } }
   .conv { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px 18px; margin: 10px 0 8px; }
+
+  /* Keep the page width the same on short and long pages so the left pane doesn't shift. */
+  html { scrollbar-gutter: stable; }
+  /* Browsers that support it hold the left pane still and fade only the right side between pages. */
+  @view-transition { navigation: auto; }
+  aside { view-transition-name: sidebar; }
+  ::view-transition-group(*) { animation-duration: .18s; }
+  @media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }

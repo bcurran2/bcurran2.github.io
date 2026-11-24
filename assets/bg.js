@@ -9,19 +9,50 @@
 
   function rand(a, b) { return a + Math.random() * (b - a); }
 
+  // The network is carried from page to page (as fractions of the pane size), so
+  // switching tabs continues the same picture instead of starting a new one.
+  var KEY = 'bgnet:v1';
+  function save() {
+    if (!w || !h || !nodes.length) return;
+    try {
+      sessionStorage.setItem(KEY, JSON.stringify(nodes.map(function (n) {
+        return [+(n.x / w).toFixed(4), +(n.y / h).toFixed(4), +n.vx.toFixed(4), +n.vy.toFixed(4), +n.r.toFixed(2)];
+      })));
+    } catch (e) { /* storage unavailable: start fresh each page */ }
+  }
+  function load() {
+    try {
+      var s = JSON.parse(sessionStorage.getItem(KEY));
+      if (!Array.isArray(s) || s.length < 5 || s.length > 80) return null;
+      for (var i = 0; i < s.length; i++) {
+        if (!Array.isArray(s[i]) || s[i].length !== 5 || s[i].some(function (v) { return typeof v !== 'number' || !isFinite(v); })) return null;
+      }
+      return s;
+    } catch (e) { return null; }
+  }
+
   function build() {
     var r = canvas.getBoundingClientRect();
     dpr = Math.min(window.devicePixelRatio || 1, 2);
-    w = Math.round(r.width); h = Math.round(r.height);
-    if (!w || !h) return;
+    var nw = Math.round(r.width), nh = Math.round(r.height);
+    if (!nw || !nh) return;
+    // keep the current nodes on resize, or restore the ones the last page saved
+    var keep = nodes.length && w && h
+      ? nodes.map(function (n) { return [n.x / w, n.y / h, n.vx, n.vy, n.r]; })
+      : load();
+    w = nw; h = nh;
     canvas.width = w * dpr; canvas.height = h * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    var n = Math.max(12, Math.min(48, Math.round(w * h / 9000)));
     nodes = [];
-    for (var i = 0; i < n; i++) {
-      nodes.push({ x: rand(0, w), y: rand(0, h), vx: rand(-.18, .18), vy: rand(-.18, .18), r: rand(1.4, 3) });
+    if (keep) {
+      keep.forEach(function (k) { nodes.push({ x: k[0] * w, y: k[1] * h, vx: k[2], vy: k[3], r: k[4] }); });
+    } else {
+      var n = Math.max(12, Math.min(48, Math.round(w * h / 9000)));
+      for (var i = 0; i < n; i++) {
+        nodes.push({ x: rand(0, w), y: rand(0, h), vx: rand(-.18, .18), vy: rand(-.18, .18), r: rand(1.4, 3) });
+      }
     }
-    if (reduce) draw();
+    draw();
   }
 
   function draw() {
@@ -71,8 +102,9 @@
   document.addEventListener('mouseleave', function () { mouse = null; });
   window.addEventListener('resize', build);
   document.addEventListener('visibilitychange', function () {
-    if (document.hidden) { cancelAnimationFrame(raf); raf = null; } else if (!reduce && !raf) raf = requestAnimationFrame(step);
+    if (document.hidden) { save(); cancelAnimationFrame(raf); raf = null; } else if (!reduce && !raf) raf = requestAnimationFrame(step);
   });
+  window.addEventListener('pagehide', save);
 
   build();
   if (!reduce) raf = requestAnimationFrame(step);
