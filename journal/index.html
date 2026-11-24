@@ -44,7 +44,7 @@ nav: journal
         the dbt monthly summary. Retries with backoff, rate-limit handling, and logging cover the API calls.
       </p>
       <p>
-        GitHub's <code>since</code> filter is inclusive, so every run re-fetches a few issues it has already
+        GitHub's <em>since</em> filter is inclusive, so every run re-fetches a few issues it has already
         loaded. During testing, one issue was captured only because of that overlap. A strict cursor
         would have missed it permanently, and the deduplication step absorbs the repeats safely.
       </p>
