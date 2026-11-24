@@ -216,3 +216,6 @@
     .plinks { line-height: 1.2; }
   }
   @media (max-width: 640px) { .gallery .dots button { width: 34px; height: 34px; } .gallery .dots button::after { left: 12px; top: 12px; } }
+
+  /* Inline code uses the surrounding font so text never switches typefaces mid-sentence. */
+  code { font: inherit; }
