@@ -1,41 +1,10 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cluster Calculator · Brian Curran</title>
-<meta name="description" content="Enter a GPU count, state, and electricity rate to see the power, energy, cost, and largest training run for an AI cluster.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css">
-</head>
-<body>
-<div class="layout">
-
-  <aside>
-    <canvas id="bg" aria-hidden="true"></canvas>
-    <img class="avatar" src="https://github.com/bcurran2.png?size=240" alt="Brian Curran" width="112" height="112">
-    <h1>Brian Curran</h1>
-    <p class="role">Data Analyst Building Pipelines and Integrations</p>
-    <hr class="bar">
-    <p class="status"><span class="dot" aria-hidden="true"></span>Open to work</p>
-    <ul class="contact">
-      <li><a href="mailto:brian.curran22@gmail.com">brian.curran22@gmail.com</a></li>
-      <li><a href="https://www.linkedin.com/in/brian-curran-87124225/">LinkedIn</a></li>
-      <li><a href="https://github.com/bcurran2">GitHub</a></li>
-      <li><a href="https://public.tableau.com/app/profile/brian.curran">Tableau Public</a></li>
-    </ul>
-    <p class="where">Looking for data integration, analytics engineering, BI development, and implementation roles. Remote, or in the Austin area. Based in Leander, TX.</p>
-  </aside>
-
-  <main>
-    <nav class="topnav" aria-label="Pages">
-      <a href="../">Home</a>
-      <a href="../journal/">Journal</a>
-      <a href="../resume/">Resume</a>
-    </nav>
-
+---
+layout: default
+title: "Cluster Calculator · Brian Curran"
+description: "Enter a GPU count, state, and electricity rate to see the power, energy, cost, and largest training run for an AI cluster."
+scripts:
+  - planner.js
+---
     <h2 class="calc-title">AI Data Center Cluster Calculator</h2>
     <p class="calc-intro">Enter the size of a GPU cluster and where it will run. The calculator shows the power it needs, what it costs to build and run, and the largest model it could train. It uses the same published figures and formulas as my <a href="https://github.com/bcurran2/data-center-scaling-planner">scaling planner notebook</a>.</p>
 
@@ -120,11 +89,3 @@
 
       <p class="notes">Hardware cost counts the GPU systems only. Networking and storage add power, which the calculator includes, but they have no published price here, so treat the total as a floor. Facility cost uses the midpoint of a published per-megawatt range. Energy and electricity assume full load all year, which is an upper bound. GB200 NVL72 pricing is an analyst estimate, not a list price. Electricity rates are EIA average industrial prices for November 2025 (Electric Power Monthly, Table 5.6.A). Sources for every figure are listed in the <a href="https://github.com/bcurran2/data-center-scaling-planner#sources">README</a>. This is a planning calculator, not a forecast.</p>
     </section>
-  </main>
-
-  <footer>© 2026 Brian Curran</footer>
-</div>
-<script src="../assets/bg.js" defer></script>
-<script src="../assets/planner.js" defer></script>
-</body>
-</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ page.title }}</title>
+<meta name="description" content="{{ page.description }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<div class="layout">
+
+  <aside>
+    <canvas id="bg" aria-hidden="true"></canvas>
+    <img class="avatar" src="https://github.com/bcurran2.png?size=240" alt="Brian Curran" width="112" height="112">
+    <h1>Brian Curran</h1>
+    <p class="role">Data Analyst Building Pipelines and Integrations</p>
+    <hr class="bar">
+    <p class="status"><span class="dot" aria-hidden="true"></span>Open to work</p>
+    <ul class="contact">
+      <li><a href="mailto:brian.curran22@gmail.com">brian.curran22@gmail.com</a></li>
+      <li><a href="https://www.linkedin.com/in/brian-curran-87124225/">LinkedIn</a></li>
+      <li><a href="https://github.com/bcurran2">GitHub</a></li>
+      <li><a href="https://public.tableau.com/app/profile/brian.curran">Tableau Public</a></li>
+    </ul>
+    <p class="where">Looking for data integration, analytics engineering, BI development, and implementation roles. Remote, or in the Austin area. Based in Leander, TX.</p>
+  </aside>
+
+  <main>
+    <nav class="topnav" aria-label="Pages">
+      <a href="/"{% if page.nav == 'home' %} aria-current="page"{% endif %}>Home</a>
+      <a href="/journal/"{% if page.nav == 'journal' %} aria-current="page"{% endif %}>Journal</a>
+      <a href="/resume/"{% if page.nav == 'resume' %} aria-current="page"{% endif %}>Resume</a>
+    </nav>
+
+{{ content }}
+  </main>
+
+  <footer>© 2026 Brian Curran</footer>
+</div>
+<script src="/assets/bg.js" defer></script>
+{% for s in page.scripts %}<script src="/assets/{{ s }}" defer></script>
+{% endfor %}</body>
+</html>
